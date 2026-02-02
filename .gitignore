@@ -1,0 +1,55 @@
+# Secrets
+.env
+.env.*
+
+# AI tooling
+.claude/
+.agents/
+.agent/
+.mcp.json
+skills/
+
+# IDE/Editor configs
+.cline/
+.codebuddy/
+.codex/
+.commandcode/
+.continue/
+.crush/
+.cursor/
+.factory/
+.gemini/
+.github/
+.goose/
+.junie/
+.kilocode/
+.kiro/
+.kode/
+.mcpjam/
+.mux/
+.neovate/
+.opencode/
+.openhands/
+.pi/
+.pochi/
+.qoder/
+.qwen/
+.roo/
+.trae/
+.windsurf/
+.zencoder/
+
+# Dependencies
+node_modules/
+package-lock.json
+
+# Build
+.next/
+out/
+build/
+
+# Misc
+.DS_Store
+*.pem
+.vscode/
+.idea/
