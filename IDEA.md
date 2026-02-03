@@ -328,3 +328,70 @@ ETH → USDC on Arbitrum
          ▼
 Done (single tx, ~$0.50)
 ```
+
+### Cross-Chain Rebalance
+
+```
+ETH overweight on Arbitrum, need USDC on Base
+         │
+         ▼
+LI.FI Composer route:
+├── Swap ETH → USDC on Arbitrum
+├── Bridge USDC Arbitrum → Base
+└── All in one flow
+         │
+         ▼
+Done (appears as single operation to user)
+```
+
+### Multi-Asset Rebalance
+
+```
+ETH overweight, USDC and BTC underweight
+         │
+         ▼
+Chamberline optimizes:
+├── Step 1: Sell 2.1 ETH → USDC (Arbitrum, Uniswap v4)
+├── Step 2: Bridge 60% USDC to Base (LI.FI)
+├── Step 3: Swap USDC → WBTC on Base (Uniswap v4)
+├── Step 4: Keep 40% USDC on Arbitrum
+         │
+         ▼
+Three txs batched, total cost ~$5
+```
+
+---
+
+## Sui Integration
+
+### DeepBook for Sui Positions
+
+```
+User has SUI tokens on Sui network
+         │
+         ▼
+Chamberline reads balance via Sui RPC
+         │
+         ▼
+If rebalance needed on Sui:
+├── Use DeepBook for limit orders (better prices)
+├── Or market orders for immediate execution
+└── PTB for atomic multi-step on Sui
+```
+
+### Cross-Chain to/from Sui
+
+```
+Need to move value from EVM to Sui (or vice versa)
+         │
+         ▼
+LI.FI handles Sui bridging
+├── Wormhole for most assets
+└── Native bridges where available
+```
+
+---
+
+## Execution Proofs
+
+Every rebalance generates proof:
