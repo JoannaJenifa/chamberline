@@ -252,3 +252,79 @@ function calculateDrift(state: PortfolioState): DriftReport {
     driftUSD: (asset.drift / 100) * state.totalValueUSD,
     action: asset.drift > 0 ? 'SELL' : 'BUY',
     amount: Math.abs(asset.driftUSD)
+  }));
+}
+
+function shouldRebalance(drift: DriftReport, threshold: number): boolean {
+  return drift.some(d => Math.abs(d.drift) > threshold);
+}
+```
+
+### Rebalance Strategy Generation
+
+```typescript
+interface RebalanceStep {
+  action: 'SWAP' | 'BRIDGE' | 'BRIDGE_AND_SWAP';
+  fromAsset: string;
+  toAsset: string;
+  fromChain: string;
+  toChain: string;
+  amount: number;
+  estimatedOutput: number;
+  estimatedCost: number;
+  route: LiFiRoute | UniswapRoute;
+}
+
+async function generateRebalancePlan(
+  drift: DriftReport,
+  constraints: RebalanceConstraints
+): Promise<RebalanceStep[]> {
+  
+  // 1. Identify sells (assets over target)
+  const sells = drift.filter(d => d.drift > 0);
+  
+  // 2. Identify buys (assets under target)
+  const buys = drift.filter(d => d.drift < 0);
+  
+  // 3. For each sell, find optimal route
+  const steps: RebalanceStep[] = [];
+  
+  for (const sell of sells) {
+    // Get LI.FI quote for cross-chain if needed
+    const lifiQuote = await getLiFiQuote({
+      fromChain: sell.bestChainToSell,
+      toChain: buys[0].bestChainToBuy,
+      fromToken: sell.symbol,
+      toToken: 'USDC', // intermediate
+      amount: sell.amount
+    });
+    
+    steps.push({
+      action: 'BRIDGE_AND_SWAP',
+      ...lifiQuote
+    });
+  }
+  
+  // 4. Optimize for gas (batch same-chain operations)
+  return optimizeSteps(steps, constraints);
+}
+```
+
+---
+
+## Cross-Chain Execution
+
+### Same-Chain Rebalance
+
+```
+ETH overweight on Arbitrum, need more USDC on Arbitrum
+         │
+         ▼
+Simple Uniswap v4 swap
+         │
+         ▼
+ETH → USDC on Arbitrum
+         │
+         ▼
+Done (single tx, ~$0.50)
+```
