@@ -476,3 +476,18 @@ rebalance_history:
 |-------|----------------|
 | **LI.FI - Best AI x LI.FI** ($2k) | Agent using LI.FI as cross-chain execution layer |
 | **Uniswap v4 - Agentic Finance** ($5k) | Agent programmatically managing positions via v4 |
+| **Sui - Notable Project** ($1k) | DeepBook integration for Sui-side execution |
+
+**Total potential: $8k**
+
+---
+
+## Hackathon Scope
+
+### Must Have
+- [ ] Multi-chain balance aggregation (Arbitrum, Base, Ethereum)
+- [ ] Target allocation configuration UI
+- [ ] Drift calculation and visualization
+- [ ] Rebalance proposal generation
+- [ ] LI.FI integration for cross-chain swaps
+- [ ] Uniswap v4 integration for EVM swaps
