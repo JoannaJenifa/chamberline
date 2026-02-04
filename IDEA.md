@@ -445,3 +445,34 @@ portfolio_settings:
   preferred_chains  TEXT[]
 
 rebalance_history:
+  id                TEXT PRIMARY KEY
+  portfolio_id      TEXT REFERENCES portfolios
+  executed_at       TIMESTAMP
+  total_value_moved DECIMAL
+  total_cost        DECIMAL
+  steps             JSON
+  before_allocation JSON
+  after_allocation  JSON
+  tx_hashes         TEXT[]
+```
+
+---
+
+## Why This Wins
+
+| Angle | Why It's Compelling |
+|-------|---------------------|
+| **Universal pain** | Everyone with multi-chain assets has this problem |
+| **Clear agent logic** | Monitor → detect drift → propose → execute |
+| **Novel execution** | Cross-chain rebalancing in one flow doesn't exist |
+| **Great demo** | Show drift, click rebalance, watch execution across chains |
+| **LI.FI showcase** | This is exactly what Composer is built for |
+
+---
+
+## Prize Track Alignment
+
+| Prize | How We Qualify |
+|-------|----------------|
+| **LI.FI - Best AI x LI.FI** ($2k) | Agent using LI.FI as cross-chain execution layer |
+| **Uniswap v4 - Agentic Finance** ($5k) | Agent programmatically managing positions via v4 |
