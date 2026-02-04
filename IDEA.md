@@ -395,3 +395,53 @@ LI.FI handles Sui bridging
 ## Execution Proofs
 
 Every rebalance generates proof:
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│  REBALANCE COMPLETE ✅                                          │
+│                                                                 │
+│  Execution Summary:                                             │
+│  ├── Total Value Moved: $7,640                                 │
+│  ├── Total Cost: $4.18                                         │
+│  ├── Slippage: 0.08%                                           │
+│  └── Time: 47 seconds                                          │
+│                                                                 │
+│  Transactions:                                                  │
+│  ├── Arbitrum: 0xabc...123 (Sell 2.1 ETH)                     │
+│  ├── LI.FI: 0xdef...456 (Bridge USDC)                         │
+│  └── Base: 0x789...xyz (Buy WBTC)                             │
+│                                                                 │
+│  Before → After:                                                │
+│  ├── ETH: 58% → 50.2%                                         │
+│  ├── USDC: 24% → 29.8%                                        │
+│  └── BTC: 18% → 20.0%                                         │
+│                                                                 │
+│  [View on Explorer] [Download Report]                          │
+│                                                                 │
+└─────────────────────────────────────────────────────────────────┘
+```
+
+---
+
+## Database Schema
+
+```sql
+portfolios:
+  id                TEXT PRIMARY KEY
+  wallet_address    ADDRESS
+  name              TEXT
+  created_at        TIMESTAMP
+
+portfolio_targets:
+  portfolio_id      TEXT REFERENCES portfolios
+  asset_symbol      TEXT
+  target_percent    DECIMAL
+  
+portfolio_settings:
+  portfolio_id      TEXT REFERENCES portfolios
+  drift_threshold   DECIMAL DEFAULT 5.0
+  max_slippage      DECIMAL DEFAULT 0.5
+  auto_rebalance    ENUM (off, daily, weekly)
+  preferred_chains  TEXT[]
+
+rebalance_history:
