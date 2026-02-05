@@ -57,3 +57,12 @@ Flow steps:
 ## Links
 
 - github.com/gabrielantonyxaviour/chamberline
+- @gabrielaxy
+- gabrielaxy.eth
+
+## Tech Stack
+
+LI.FI Composer, Uniswap v4, Sui DeepBook, React, TypeScript
+
+---
+
