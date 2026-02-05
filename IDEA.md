@@ -491,3 +491,13 @@ rebalance_history:
 - [ ] Rebalance proposal generation
 - [ ] LI.FI integration for cross-chain swaps
 - [ ] Uniswap v4 integration for EVM swaps
+- [ ] Basic execution flow (manual trigger)
+- [ ] Execution proof display
+
+### Nice to Have
+- [ ] Sui DeepBook integration
+- [ ] Automated triggers (rebalance when drift > X%)
+- [ ] Historical performance tracking
+- [ ] Gas optimization (batch where possible)
+- [ ] Multiple portfolio support
+- [ ] Preset allocation strategies
