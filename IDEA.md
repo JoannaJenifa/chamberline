@@ -501,3 +501,9 @@ rebalance_history:
 - [ ] Gas optimization (batch where possible)
 - [ ] Multiple portfolio support
 - [ ] Preset allocation strategies
+
+---
+
+## The Pitch
+
+> "Your portfolio drifts every day. ETH pumps, you're overexposed. Stables drop, you're under-hedged. Chamberline watches your allocation across every chain, and when drift exceeds your threshold, rebalances everything in one click. Cross-chain. Atomic. Done."
