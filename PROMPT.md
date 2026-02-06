@@ -69,3 +69,6 @@ LI.FI Composer, Uniswap v4, Sui DeepBook, React, TypeScript
 ## Instructions
 
 1. Use `gifgrep` to find appropriate problem/solution GIFs
+2. Use `/gemini-image` to generate a logo: "Minimalist app logo: chameleon or lizard silhouette with chart/portfolio elements. Green (#4CAF50) on dark background. Clean vector style, modern fintech aesthetic. No text. Square format."
+3. Generate the pitch deck following the 8-slide structure
+4. Save to: `/Users/gabrielantonyxaviour/Documents/workspaces/ethglobal/ideas/decks/chamberline_pitch.pptx`
