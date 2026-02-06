@@ -66,3 +66,6 @@ LI.FI Composer, Uniswap v4, Sui DeepBook, React, TypeScript
 
 ---
 
+## Instructions
+
+1. Use `gifgrep` to find appropriate problem/solution GIFs
